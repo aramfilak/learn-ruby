@@ -3,6 +3,13 @@ class Member
   # class variables always start with @@.
   # the are static variables this means that they are shared among all instances of a class
   @@total_members = 0
+  # allow to read and write the variable
+  attr_accessor :member_email
+  # or you can use attr_reader to only read the variable
+  attr_reader :member_id
+  # or you can use attr_writer to only write the variable
+  attr_writer :member_name
+
 
   # global variable
   # always starts with $
@@ -31,6 +38,6 @@ end
 
 # create an instance of the class
 # object = class.new
-Mebmer1 = Member.new(1, "John", "john@gmail.com")
+mebmer1 = Member.new(1, "John", "john@gmail.com")
 
-Mebmer1.print_details
+mebmer1.print_details
