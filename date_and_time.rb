@@ -3,13 +3,13 @@
 # You can use them to work with dates and times in Ruby.
 
 # current time
-puts  Time.now
+puts Time.now
 
 # specific time
 puts Time.new(2021, 12, 25, 12, 0, 0)
 
 # Date Arithmetic with Time
-def calculate_my_age(day,month,year)
+def calculate_my_age(day, month, year)
   dob = Time.new(year, month, day)
   now = Time.now
   age = now.year - dob.year
@@ -19,7 +19,7 @@ end
 
 calculate_my_age(25, 12, 1990) # You are 33 years old
 
- # Formatting Time with strftime
+# Formatting Time with strftime
 # %d - day of the month
 # %m - month
 # %Y - year
@@ -29,10 +29,10 @@ calculate_my_age(25, 12, 1990) # You are 33 years old
 german_time = Time.now.strftime("%d.%m.%Y %H:%M:%S")
 puts german_time # 25.12.2021 12:00:00
 
+# Working with Dates
+# Date class used to work with date without time
+require 'date'
 
-def get_the_date_of_date(date)
-  if date.is_a?(Date)
-    date.
-  end
-  yield
-end
+current_date = Date.today
+puts current_date
+

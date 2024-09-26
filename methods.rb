@@ -46,7 +46,7 @@ def calculate
   x = 10
   y = 20
   z = 30
-  return x, y, z
+  [x, y, z]
 end
 
 result = calculate
