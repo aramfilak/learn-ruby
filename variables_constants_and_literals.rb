@@ -6,7 +6,7 @@
 # Uninitialized instance variables have the value nil
 class Customer
 
-  def initialize (id, name ,address)
+  def initialize (id, name, address)
     @cust_id = id
     @cust_name = name
     @cust_addr = address
@@ -83,8 +83,7 @@ class2obj.print_global
 id = "42"
 name = "James Bond"
 address = "Cayman Islands"
-puts id + "_" + name + "_"+ address
-
+puts id + "_" + name + "_" + address
 
 # 5. Constants
 # _______________________________________________________
@@ -103,33 +102,31 @@ end
 object = Example.new
 object.show
 
-
-
 # Literals
 # _______________________________________________________
 puts 'escape using "\\"'
 puts 'That\'s right'
-puts "Multiplication Value : #{24*60*60}"
+puts "Multiplication Value : #{24 * 60 * 60}"
 
 # Interger Numbers
 # -230 to 230 are objects of class Fixnum and objects outside this range are of class Bignum
-123          # Fixnum decimal
-1_234        # Fixnum decimal with underline
--500         # Negative Fixnum
-0377         # Octal
-0xff         # Hexadecimal
-0b1011       # Binary
-?a           # Character code for 'a'
-12345678901234567890  # Bignum
+123 # Fixnum decimal
+1_234 # Fixnum decimal with underline
+-500 # Negative Fixnum
+0377 # Octal
+0xff # Hexadecimal
+0b1011 # Binary
+?a # Character code for 'a'
+12345678901234567890 # Bignum
 
 # Floating Numbers
-123.4      # Floating point value
-1.0e6      # Scientific notation
-4E20       # Dot not required
-4e+20      # Sign before exponential
+123.4 # Floating point value
+1.0e6 # Scientific notation
+4E20 # Dot not required
+4e+20 # Sign before exponential
 
 # Array, literals are created by placing a comma-separated series of object references between square brackets
-ary = [ "fred", 10, 3.14, "This is a string", "last element", ]
+ary = ["fred", 10, 3.14, "This is a string", "last element",]
 ary.each do |i|
   puts i
 end
