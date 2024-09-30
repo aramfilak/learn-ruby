@@ -32,7 +32,7 @@ puts german_time # 25.12.2021 12:00:00
 
 def get_the_date_of_date(date)
   if date.is_a?(Date)
-    date.
+    date.strftime("%d.%m.%Y")
   end
   yield
 end
