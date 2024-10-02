@@ -45,6 +45,21 @@ class DynamicArray
     @length += 1
   end
 
+  def insert(element, index)
+    raise "Array index out of bounds" if index >= @length || index < 0
+
+    if @size == @length
+      expand
+    end
+
+    @length.downto(index + 1) do |i|
+      @array[i] = @array[i - 1]
+    end
+
+    @array[index] = element
+    @length += 1
+  end
+
   def to_s
     @array.to_s
   end
@@ -86,6 +101,15 @@ class TestDynamicArray < Test::Unit::TestCase
     array.push(3)
     assert_equal(4, array.instance_variable_get(:@size))
     assert_equal("[1, 2, 3, nil]", array.to_s)
+  end
+
+  def test_insert
+    array = DynamicArray.new(2)
+    array.push(1)
+    array.push(2)
+    array.insert(3, 1)
+    assert_equal("[1, 3, 2, nil]", array.to_s)
+    assert_raise(RuntimeError) { array.insert(4, -1) }
   end
 end
 
