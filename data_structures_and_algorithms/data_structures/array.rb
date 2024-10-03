@@ -69,6 +69,14 @@ class DynamicArray
     @array[index]
   end
 
+  def right_rotate
+    last_element = at(-1)
+    (@length - 1).downto(1) do |index|
+      @array[index] = @array[index - 1]
+    end
+    @array[0] = last_element
+  end
+  
   private
 
   def expand
@@ -133,6 +141,20 @@ class TestDynamicArray < Test::Unit::TestCase
     assert_equal(2, array.at(-1))
     assert_equal(1, array.at(-2))
     assert_raise(RuntimeError) { array.at(-3) }
+  end
+
+  def test_rotate_right()
+    array = DynamicArray.new(2)
+    array.push(1)
+    array.push(2)
+    array.push(3)
+    array.push(4)
+    assert_equal(4, array.at(-1))
+    array.right_rotate
+    assert_equal(4, array.at(0))
+    array.right_rotate
+    assert_equal(3, array.at(0))
+    assert_equal(4, array.at(1))
   end
 end
 
