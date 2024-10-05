@@ -47,8 +47,39 @@ class LeetCode
     stack.empty?
   end
 
+  # 735. Asteroid Collision
+  # https://leetcode.com/problems/asteroid-collision/
+  # @param [Array<Integer>] asteroids
+  # @return [Array<Integer>]
+  def asteroid_collision(asteroids)
+    stack = []
+
+    asteroids.each do |ast|
+      if ast.negative?
+        while !stack.empty? && stack.last.positive?
+          if stack.last < ast.abs
+            stack.pop
+          elsif stack.last == ast.abs
+            stack.pop
+            ast = 0
+            break
+          else
+            break
+          end
+        end
+        stack.push(ast) if ast != 0 && (stack.empty? || stack.last.negative?)
+      else
+        stack.push(ast)
+      end
+    end
+
+    stack
+  end
+
 end
 
+leet = LeetCode.new
 
+leet.asteroid_collision([10, 2, -5])
 
 
