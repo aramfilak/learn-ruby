@@ -48,7 +48,7 @@ class LeetCode
   end
 
   # 735. Asteroid Collision
-  # https://leetcode.com/problems/asteroid-collision/
+  # https://leetcode.com/problems/asteroid-collision
   # @param [Array<Integer>] asteroids
   # @return [Array<Integer>]
   def asteroid_collision(asteroids)
@@ -72,14 +72,26 @@ class LeetCode
         stack.push(ast)
       end
     end
-
     stack
   end
 
+  # 856. Score of Parentheses
+  # https://leetcode.com/problems/score-of-parentheses
+  # @param [String] s
+  # @return [Integer]
+  def score_of_parentheses(s)
+    stack = []
+    score = 0
+
+    s.each_char do |ch|
+      if ch == '('
+        stack.push(score)
+        score = 0
+      else
+        score = stack.pop + [2 * score, 1].max
+      end
+    end
+
+    score
+  end
 end
-
-leet = LeetCode.new
-
-leet.asteroid_collision([10, 2, -5])
-
-
