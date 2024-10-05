@@ -5,6 +5,21 @@
 # stack leet code problems
 
 class LeetCode
+  # 1047. Remove All Adjacent Duplicates In String
+  # https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string
+  # @param [String] s
+  # @return [String]
+  def remove_duplicates(s)
+    stack = []
+    s.each_char do |ch|
+      if stack.last === ch
+        stack.pop
+      else
+        stack.push(ch)
+      end
+    end
+    stack.join
+  end
 
   # 20. Valid Parentheses
   # https://leetcode.com/problems/valid-parentheses
