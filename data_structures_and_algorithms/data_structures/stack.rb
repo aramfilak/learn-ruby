@@ -95,3 +95,123 @@ class LeetCode
     score
   end
 end
+
+# LinkedList Node
+class Node
+  attr_accessor :next, :value
+  attr_writer :value, :next
+
+  def initialize(value)
+    @value = value
+    @next = nil
+  end
+
+end
+
+class LinkedListStack
+  attr_accessor :length
+
+  def initialize()
+    @head = Node.new(nil)
+    @length = 0
+  end
+
+  def push(value)
+    if !@head.value
+      @head.value = value
+    else
+      @item = Node.new(value)
+      @item.next = @head
+      @head = @item
+    end
+    @length += 1
+  end
+
+  def pop
+    value = @head.value
+    @head = @head.next
+    @length -= 1
+    value
+  end
+
+  def peek
+    @head.value
+  end
+
+  def is_empty
+    @head.value.nil?
+  end
+
+  def print
+    current = @head
+    while current
+      puts "=> #{current.value}"
+      current = current.next
+    end
+  end
+
+end
+
+require 'test/unit'
+
+class LinkedListStackTest < Test::Unit::TestCase
+
+  def setup
+    @stack = LinkedListStack.new
+  end
+
+  def test_initialize
+    assert_equal(0, @stack.length)
+    assert_nil(@stack.peek)
+    assert_true(@stack.is_empty)
+  end
+
+  def test_push
+    @stack.push(1)
+    assert_equal(1, @stack.peek)
+    assert_equal(1, @stack.length)
+    assert_false(@stack.is_empty)
+
+    @stack.push(2)
+    assert_equal(2, @stack.peek)
+    assert_equal(2, @stack.length)
+  end
+
+  def test_pop
+    @stack.push(1)
+    @stack.push(2)
+    assert_equal(2, @stack.pop)
+    assert_equal(1, @stack.length)
+    assert_equal(1, @stack.peek)
+
+    assert_equal(1, @stack.pop)
+    assert_equal(0, @stack.length)
+    assert_nil(@stack.peek)
+    assert_true(@stack.is_empty)
+  end
+
+  def test_peek
+    assert_nil(@stack.peek)
+    @stack.push(1)
+    assert_equal(1, @stack.peek)
+    @stack.push(2)
+    assert_equal(2, @stack.peek)
+  end
+
+  def test_is_empty
+    assert_true(@stack.is_empty)
+    @stack.push(1)
+    assert_false(@stack.is_empty)
+    @stack.pop
+    assert_true(@stack.is_empty)
+  end
+
+  def test_print
+    @stack.push(1)
+    @stack.push(2)
+    @stack.push(3)
+    assert_output("=> 3\n=> 2\n=> 1") { @stack.print }
+  end
+
+end
+
