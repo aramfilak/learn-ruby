@@ -215,3 +215,68 @@ class LinkedListStackTest < Test::Unit::TestCase
 
 end
 
+class PrefixInfixPostfix
+
+  # @param [String] expression
+  class PrefixInfixPostfix
+    # @param [String] expression
+    def infix_to_postfix(expression)
+      output = ""
+      operators = []
+      precedence = { '+' => 1, '-' => 1, '*' => 2, '/' => 2 }
+
+      expression.each_char do |ch|
+        if is_digit?(ch)
+          output += ch
+        else
+          while !operators.empty? && precedence[operators.last] >= precedence[ch]
+            output += operators.pop
+          end
+          operators.push(ch)
+        end
+      end
+
+      output + operators.reverse.join
+    end
+
+    def is_digit?(char)
+      char >= '0' && char <= '9'
+    end
+  end
+
+  def is_digit?(char)
+    char >= '0' && char <= '9'
+  end
+
+end
+
+require 'test/unit'
+
+class PrefixInfixPostfixTest < Test::Unit::TestCase
+
+  def setup
+    @converter = PrefixInfixPostfix.new
+  end
+
+  def test_infix_to_postfix
+    assert_equal("23+", @converter.infix_to_postfix("2+3"))
+    assert_equal("23*4+", @converter.infix_to_postfix("2*3+4"))
+    assert_equal("23+4*", @converter.infix_to_postfix("2+3*4"))
+    assert_equal("345*+", @converter.infix_to_postfix("3+4*5"))
+    assert_equal("34*5+", @converter.infix_to_postfix("3*4+5"))
+  end
+
+  def test_is_digit
+    assert_true(@converter.is_digit?('0'))
+    assert_true(@converter.is_digit?('9'))
+    assert_false(@converter.is_digit?('a'))
+    assert_false(@converter.is_digit?('*'))
+  end
+
+  def test_operator_precedence_is_higher
+    assert_true(@converter.operator_precedence_is_higher('*'))
+    assert_true(@converter.operator_precedence_is_higher('/'))
+    assert_false(@converter.operator_precedence_is_higher('+'))
+    assert_false(@converter.operator_precedence_is_higher('-'))
+  end
+end
